@@ -11,5 +11,9 @@ name = "lockbud-checks-this"
 version = "0.1.0"
 
 [[package]]
+name = "mirai-checks-this"
+version = "0.1.0"
+
+[[package]]
 name = "os-checker-test-suite"
 version = "0.1.0"
