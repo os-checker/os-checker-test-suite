@@ -40,7 +40,7 @@ warning: attempt to add with overflow
 
 <details>
 
-<summary>这部分不重要，结论时不使用 --statistics 参数</summary>
+<summary>这部分不重要，结论是不使用 --statistics 参数</summary>
 
 * `--diag` 与 `--statistics` 一起使用时，mirai 只会考虑 --statistics
 * 直接第二次运行，会因为增量构建而导致无诊断
@@ -121,3 +121,10 @@ d":17,"highlight_start":10,"text":"    dbg!(a + b());"}]}]}}
 （这么说，利用 MIR 的静态检查工具都可以具有 clippy 格式的输出样式了？那么这就是标准化呀！）
 
 坏消息：由于输出格式相同，我们无法区分诊断来自 MIRAI 还是 rustc。
+
+# 与编译条件交互
+
+* 根据 [#1235](https://github.com/facebookexperimental/MIRAI/issues/1235)，传递 
+  RUSTC_FLAGS 的方式为 `MIRAI_FLAGS="-- --cfg=my_cfg" cargo mirai`。
+* 【已测试】可以与 features 交互：`MIRAI_FLAGS="--diag=paranoid" cargo +nightly-2023-12-30 mirai -Fzero`
+* 【待测试】与 targets 交互

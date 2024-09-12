@@ -32,6 +32,12 @@ pub fn main() {
 //   |
 // 3 |     dbg!(a + b());
 //   |          ^^^^^^^
+#[cfg(not(feature = "zero"))]
 fn b() -> u8 {
     1
+}
+
+#[cfg(feature = "zero")]
+fn b() -> u8 {
+    0
 }
