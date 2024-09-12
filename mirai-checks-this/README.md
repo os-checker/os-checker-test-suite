@@ -128,3 +128,15 @@ d":17,"highlight_start":10,"text":"    dbg!(a + b());"}]}]}}
   RUSTC_FLAGS 的方式为 `MIRAI_FLAGS="-- --cfg=my_cfg" cargo mirai`。
 * 【已测试】可以与 features 交互：`MIRAI_FLAGS="--diag=paranoid" cargo +nightly-2023-12-30 mirai -Fzero`
 * 【待测试】与 targets 交互
+
+# `--diag` 控制检查的严格程度
+
+对于 `kern-crates/CSpace` 仓库（随便选的；此仓库已经废弃），[CI](https://github.com/os-checker/dockerfiles/actions/runs/10827220493/job/30039886641)
+在不同 `--diag` 参数下的报告数量（在清除缓存的情况下由 `--statistics` 统计）：
+
+| --diag   | 统计数量 | 参数解释                       | 误报率 |
+|----------|:--------:|--------------------------------|:------:|
+| paranoid |    95    | 发出所有检查到的、可能的错误   |   高   |
+| library  |    95    | 需要写明前置条件（需要标注？） |    -   |
+| verify   |    81    | 有可能发出为误报的检查结果     |   中   |
+| default  |    75    | 不发出可能为误报的检查结果     |   低   |
