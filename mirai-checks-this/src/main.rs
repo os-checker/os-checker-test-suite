@@ -5,5 +5,5 @@ pub fn to_be(dst: &mut [u16]) {
 }
 
 pub fn main() {
-    to_be(&[]);
+    to_be(&mut []);
 }
