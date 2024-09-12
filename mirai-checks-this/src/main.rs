@@ -1,9 +1,5 @@
-pub fn to_be(dst: &mut [u16]) {
-    for v in dst.iter_mut() {
-        *v = v.to_be();
-    }
-}
-
+#[allow(arithmetic_overflow)]
 pub fn main() {
-    to_be(&mut []);
+    let a = u8::MAX + 1;
+    dbg!(a);
 }
