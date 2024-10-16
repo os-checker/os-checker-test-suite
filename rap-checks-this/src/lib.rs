@@ -1,3 +1,4 @@
+// uaf_drop test case from RAP
 use std::mem::ManuallyDrop;
 
 fn main() {

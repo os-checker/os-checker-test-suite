@@ -1,4 +1,8 @@
 
+`src/lib.rs` is a copy of uaf_drop test case from RAP, while `src/main.rs` is just empty.
+
+We got duplicate results for the same lib.
+
 ```rust
 os-checker-test-suite/rap-checks-this $ RAP_LOG=warn cargo +nightly-2024-06-30 rap -F
      Removed 26 files, 165.8KiB total
