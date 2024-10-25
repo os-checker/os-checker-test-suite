@@ -7,3 +7,4 @@ edition = "2021"
 
 [workspace]
 members = ["buildrs-failure", "lockbud-checks-this", "mirai-checks-this", "rap-checks-this"]
+exclude = ["workspace2"]
