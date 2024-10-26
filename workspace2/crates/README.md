@@ -27,6 +27,61 @@ os-checker-test-suite/workspace2 $ cargo rap -F -M
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.16s
 ```
 
+# ✅ rap can handle cargo-check's --target and --features
+
+E.g. for `ws-rap-checks-this_with-feature-gated`, when no feature is enabled, the result is:
+
+```rust
+workspace2/crates/ws-rap-checks-this_with-feature-gated $ cargo rap -F -M
+14:42:42|RAP|INFO|: Start cargo-rap
+14:42:42|RAP|INFO|: Search local targets for analysis.
+14:42:42|RAP|INFO|: Find a new pakage: "ws-rap-checks-this_with-feature-gated".
+14:42:42|RAP|INFO|: Running rap for target bin:ws-rap-checks-this_with-feature-gated
+warning: struct `MyRef` is never constructed
+ --> crates/ws-rap-checks-this_with-feature-gated/src/main.rs:1:8
+  |
+1 | struct MyRef<'a> {
+  |        ^^^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+warning: method `print` is never used
+ --> crates/ws-rap-checks-this_with-feature-gated/src/main.rs:6:8
+  |
+5 | impl<'a> MyRef<'a> {
+  | ------------------ method in this implementation
+6 |     fn print(&self) {
+  |        ^^^^^
+
+warning: function `f` is never used
+  --> crates/ws-rap-checks-this_with-feature-gated/src/main.rs:11:11
+   |
+11 | unsafe fn f<'a>(myref: MyRef<'a>) -> MyRef<'static> {
+   |           ^
+
+14:40:02|RAP|INFO|: Execute after_analysis() of compiler callbacks
+14:40:02|RAP|INFO|: analysis done
+warning: `ws-rap-checks-this_with-feature-gated` (bin "ws-rap-checks-this_with-feature-gated") generated 3 warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.28s
+```
+
+if `rap` feature enabled, there's a checking result:
+
+```rust
+workspace2/crates/ws-rap-checks-this_with-feature-gated $ cargo rap -F -M -- -F rap
+14:42:30|RAP|INFO|: Start cargo-rap
+14:42:30|RAP|INFO|: Search local targets for analysis.
+14:42:30|RAP|INFO|: Find a new pakage: "ws-rap-checks-this_with-feature-gated".
+14:42:30|RAP|INFO|: Running rap for target bin:ws-rap-checks-this_with-feature-gated
+14:40:10|RAP|INFO|: Execute after_analysis() of compiler callbacks
+14:40:11|RAP|WARN|: Use after free detected in function "main"
+14:40:11|RAP|WARN|: Location: crates/ws-rap-checks-this_with-feature-gated/src/main.rs:21:9: 21:15 (#0)
+14:40:11|RAP|WARN|: Location: crates/ws-rap-checks-this_with-feature-gated/src/main.rs:21:9: 21:23 (#0)
+14:40:11|RAP|INFO|: analysis done
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.27s
+```
+
+
 # ✅ lockbud supports no cargo clean too, also supports cargo args 
 
 ```rust
