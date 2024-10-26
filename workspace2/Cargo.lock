@@ -139,6 +139,10 @@ name = "ws-rap-checks-this2"
 version = "0.1.0"
 
 [[package]]
+name = "ws-rap-checks-this_with-build-script"
+version = "0.1.0"
+
+[[package]]
 name = "ws-rap-checks-this_with-feature-gated"
 version = "0.1.0"
 
