@@ -127,6 +127,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "ws-rap-checks-test-and-example"
+version = "0.1.0"
+
+[[package]]
 name = "ws-rap-checks-this1"
 version = "0.1.0"
 

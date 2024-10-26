@@ -27,7 +27,7 @@ os-checker-test-suite/workspace2 $ cargo rap -F -M
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.16s
 ```
 
-# ✅ rap can handle cargo-check's --target and --features
+# ✅ rap can handle cargo-check's arguments like --target, --features, --examples and --tests ...
 
 E.g. for `ws-rap-checks-this_with-feature-gated`, when no feature is enabled, the result is:
 
@@ -79,6 +79,57 @@ workspace2/crates/ws-rap-checks-this_with-feature-gated $ cargo rap -F -M -- -F 
 14:40:11|RAP|WARN|: Location: crates/ws-rap-checks-this_with-feature-gated/src/main.rs:21:9: 21:23 (#0)
 14:40:11|RAP|INFO|: analysis done
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.27s
+```
+
+---
+
+`--tests` and `--example`
+
+```rust
+workspace2/crates/ws-rap-checks-test-and-example $ cargo rap -F -M -- --tests
+15:23:07|RAP|INFO|: Start cargo-rap
+warning: function `ex1_test` is never used
+ --> crates/ws-rap-checks-test-and-example/src/main.rs:6:4
+  |
+6 | fn ex1_test() {
+  |    ^^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+15:18:24|RAP|INFO|: Execute after_analysis() of compiler callbacks
+15:18:24|RAP|WARN|: Use after free detected in function "ex1_test"
+15:18:24|RAP|WARN|: Location: crates/ws-rap-checks-test-and-example/src/main.rs:13:28: 13:32 (#7)
+15:18:24|RAP|WARN|: Location: crates/ws-rap-checks-test-and-example/src/main.rs:12:13: 12:26 (#0)
+15:18:24|RAP|WARN|: Location: crates/ws-rap-checks-test-and-example/src/main.rs:13:23: 13:25 (#7)
+15:18:24|RAP|INFO|: analysis done
+warning: `ws-rap-checks-test-and-example` (bin "ws-rap-checks-test-and-example" test) generated 1 warning
+warning: function `test1` is never used
+ --> crates/ws-rap-checks-test-and-example/tests/test1.rs:2:4
+  |
+2 | fn test1() {
+  |    ^^^^^
+  |
+  = note: `#[warn(dead_code)]` on by default
+
+15:18:24|RAP|INFO|: Execute after_analysis() of compiler callbacks
+15:18:24|RAP|WARN|: Use after free detected in function "test1"
+15:18:24|RAP|WARN|: Location: crates/ws-rap-checks-test-and-example/tests/test1.rs:9:23: 9:25 (#5)
+15:18:24|RAP|WARN|: Location: crates/ws-rap-checks-test-and-example/tests/test1.rs:8:13: 8:26 (#0)
+15:18:24|RAP|WARN|: Location: crates/ws-rap-checks-test-and-example/tests/test1.rs:9:28: 9:32 (#5)
+15:18:24|RAP|INFO|: analysis done
+warning: `ws-rap-checks-test-and-example` (test "test1") generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.02s
+
+15:23 root on  main [$!?] is 📦 v0.1.0 via 🦀 v1.81.0-nightly 
+workspace2/crates/ws-rap-checks-test-and-example $ cargo rap -F -M -- --example ex1
+15:23:12|RAP|INFO|: Start cargo-rap
+15:18:21|RAP|INFO|: Execute after_analysis() of compiler callbacks
+15:18:21|RAP|WARN|: Use after free detected in function "main"
+15:18:21|RAP|WARN|: Location: crates/ws-rap-checks-test-and-example/examples/ex1.rs:8:23: 8:25 (#5)
+15:18:21|RAP|WARN|: Location: crates/ws-rap-checks-test-and-example/examples/ex1.rs:8:28: 8:32 (#5)
+15:18:21|RAP|WARN|: Location: crates/ws-rap-checks-test-and-example/examples/ex1.rs:7:13: 7:26 (#0)
+15:18:21|RAP|INFO|: analysis done
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.01s
 ```
 
 
