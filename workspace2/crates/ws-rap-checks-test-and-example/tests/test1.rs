@@ -1,4 +1,4 @@
-#[cfg(test)]
+#[test]
 fn test1() {
     let ptr = {
         let v = Vec::<u8>::new();

@@ -2,7 +2,7 @@ fn main() {
     println!("Hello, world!");
 }
 
-#[cfg(test)]
+#[test]
 fn ex1_test() {
     let ptr = {
         let v = Vec::<u8>::new();
