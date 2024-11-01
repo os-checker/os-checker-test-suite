@@ -1,4 +1,7 @@
 
+# Rudra Output
+
+Logs are printed to stdout, while analysis results are to stderr.
 
 ```rust
 os-checker-test-suite/rudra-checks-this $ cargo +nightly-2021-10-21 rudra
