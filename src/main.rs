@@ -3,4 +3,6 @@ fn main() {
 
  
 println!("Hello, world!");
+
+let b = 3.14;
 }
