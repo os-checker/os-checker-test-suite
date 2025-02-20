@@ -1,0 +1,30 @@
+name: SARIF
+
+on: [push]
+
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+  CARGO_TERM_COLOR: always
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    if: true
+    steps:
+    - uses: dtolnay/rust-toolchain@nightly
+      with:
+        components: clippy, rustfmt
+    - uses: actions/checkout@v4
+
+    - uses: taiki-e/install-action@v2
+      with:
+        tool: clippy-sarif,sarif-fmt
+
+    - name: Generate SARIF
+      run: cargo clippy --all --message-format=json |
+          clippy-sarif | tee results.sarif | sarif-fmt
+
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        upload-sarif: results.sarif
