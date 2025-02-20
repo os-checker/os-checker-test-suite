@@ -1,3 +1,7 @@
+# SARIF support
+
+See [sarif.yaml](https://github.com/os-checker/os-checker-test-suite/blob/5b61f76fdf7ca5c874bc3a2620ebe87bc0f2f9d9/.github/workflows/sarif.yaml)
+and the [result](https://github.com/os-checker/os-checker-test-suite/security/code-scanning).
 
 # Rudra Output
 
