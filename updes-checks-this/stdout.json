@@ -1,0 +1,14 @@
+{
+  "success": false,
+  "unused_deps": {
+    "updes-checks-this 0.1.0 (path+file:///home/gh-zjp-CN/os-checker-test-suite/updes-checks-this)": {
+      "manifest_path": "/home/gh-zjp-CN/os-checker-test-suite/updes-checks-this/Cargo.toml",
+      "normal": [
+        "log"
+      ],
+      "development": [],
+      "build": []
+    }
+  },
+  "note": "Note: These dependencies might be used by other targets.\n      To find dependencies that are not used by any target, enable `--all-targets`.\nNote: They might be false-positive.\n      For example, `cargo-udeps` cannot detect usage of crates that are only used in doc-tests.\n      To ignore some dependencies, write `package.metadata.cargo-udeps.ignore` in Cargo.toml.\n"
+}
