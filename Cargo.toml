@@ -6,5 +6,5 @@ edition = "2021"
 [dependencies]
 
 [workspace]
-members = ["buildrs-failure", "lockbud-checks-this", "mirai-checks-this", "miri-checks-this", "rap-checks-this", "rudra-checks-this", "updes-checks-this"]
-exclude = ["workspace2"]
+members = [ "buildrs-failure", "lockbud-checks-this", "mirai-checks-this", "miri-checks-this", "rap-checks-this", "rudra-checks-this", "updes-checks-this"]
+exclude = ["workspace2", "atomvchecker-checks-this"]
